@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+
+    <!-- Font of the Website -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/CSS/styles.css" />
+</head>
+<body>
+    <h1 class="landing-page-heading">Notes App - Manage Your precious notes here.</h1>
+    <div class="container">
+        <button id="loginbtn" class="btn login" type="submit" value="login">LOGIN</button>
+        <button id="registerbtn" class="btn register" type="submit" value="register">REGISTER</button>
+    </div>
+
+    <!-- INVISIBLE MODAL -->
+    <div id="m1" class="landing-bg-modal"> 
+        <div  class="landing-modal-content">
+
+            <div class="landing-close landing-close-1">+</div>
+            <form id="register" action="/register" method="POST">
+              <label class="inputItem label" for="userName">Username: </label>
+              <input required class="inputItem" type="text" name="name1" id="userName" placeholder="Enter Name here">
+              <label class="inputItem" for="phoneNumber">Phone Number : </label>
+              <input required class="inputItem" type="number" name="username" id="phoneNumber" placeholder="Enter your phone number here">
+              <label class="inputItem" for="password">Password : </label>
+              <input required class="inputItem" type="password" name="password" id="password" placeholder="Enter your password here">
+              <button type="submit" class="landing-btn">Register</button>
+            </form>
+          </div>
+        </div>
+
+    <div id="m2" class="landing-bg-modal">
+          <div class="landing-modal-content">
+
+            <div class="landing-close landing-close-2">+</div>
+            <form id="login" action="/login" method="POST">
+              <label class="inputItem" for="phoneNumber">Phone Number : </label>
+              <input required class="inputItem" type="number" name="username" id="login-phoneNumber" placeholder="Enter your phone number here">
+              <label class="inputItem" for="password">Password : </label>
+              <input required class="inputItem" type="password" name="password" id="login-password" placeholder="Enter your password here">
+              <button type="submit" class="landing-btn">Login</button>
+            </form>
+          </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Javascript/landing.js"></script>
+</body>
+</html>

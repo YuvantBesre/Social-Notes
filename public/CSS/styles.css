@@ -1,0 +1,266 @@
+/* ------------------------------------------- LANDING PAGE ----------------------------------------------------- */
+body
+{
+    background-color: #FBEEC1;
+    font-family: "Baloo Bhai 2", cursive;
+    
+}
+
+.landing-page-heading
+{
+    text-align: center;
+     background-color: tomato;
+     border-radius: 10px;
+     margin-top: 300px;
+}
+
+.container
+{
+    text-align: center;
+}
+
+.btn
+{
+    width: 116px;
+    height: 56px;
+    font-family: "Baloo Bhai 2", cursive;
+    border-radius: 10px;
+}
+.login
+{
+    background-color: white;
+}
+.register
+{
+    background-color: black;
+    color: wheat;
+}
+.login:hover
+{
+    background-color: black;
+    cursor: pointer;
+    color: wheat;
+}
+.register:hover
+{
+    background-color: white;
+    cursor: pointer;
+    color: black;
+}
+
+.landing-bg-modal
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    display: none;
+}
+.landing-modal-content
+{
+    width: 500px;
+    height: 300px;
+    background-color: #FBEEC1 ;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 60px;
+    position: relative;
+}
+
+#add-notes label
+{
+    font-size: 18px;
+}
+.inputItem
+{
+    width: 300px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    margin: 3px auto;
+    border-radius: 10px;
+}
+
+.landing-close
+{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+.landing-btn
+{
+    width: 125px;
+    height: 47px;
+    margin-top: 6px;
+    background-color: tomato;
+    font-family: "Baloo Bhai 2", cursive;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ------------------------------------------- HOME PAGE ----------------------------------------------------- */
+h2
+{
+    text-align: center;
+    background-color: tomato;
+    margin-top: 8px;
+    position: sticky;
+    top: 0;
+}
+.search-field
+{
+    text-align: center;
+}
+.search-field input
+{
+    background-color: #FBEEC1;
+    border-radius: 10px;
+    text-align: center;
+}
+.index-btn
+{
+    background-color: tomato;
+    font-family: "Baloo Bhai 2", cursive;
+    border-radius: 10px;
+}
+
+.welcome , .welcome h3
+{
+    text-align: center;
+}
+h3
+{
+    margin-top: 10px;
+    text-decoration: underline;
+}
+#Add-note
+{
+    margin-top: 20px;
+}
+.logout
+{
+    text-decoration: none;
+    color: black;
+    font-family: "Baloo Bhai 2", cursive;
+    border-radius: 5px;
+    border: solid black;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.logout:hover{
+    background-color: bisque;
+    text-decoration: none;
+    color: black;
+}
+#my-notes
+{
+    width: 1517px;
+    padding-left: 282px;
+    margin-top: 50px;
+}
+.notes-container
+{
+   display: inline-block;
+   width: 500px;
+   border: solid black;
+   padding: 10px;
+   margin: 5px;
+   text-align: center;
+}
+.notes-container p,i
+{
+    text-align: left;
+    display: block;
+}
+
+.bg-modal
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.modal-content
+{
+    width: 862px;
+    height: 350px;
+    background-color: #FBEEC1 ;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+.input-item
+{
+    width: 508px;
+    display: block;
+    text-align: center;
+    margin: 5px auto;
+    border-radius: 10px;
+}
+.close
+{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+#edit-btn
+{
+    border: solid black;
+    color: black;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+#share-form
+{
+    margin-top: 10px;
+}
+#toShareInput
+{
+    background-color: #FBEEC1;
+    border-radius: 10px;
+    width: 218px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+/* ------------------------------------------- Edit PAGE ----------------------------------------------------- */
+#your-note
+{
+    padding-left: 0;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 35px;
+}
+.edit-logout
+{
+    margin-top: 28px;
+    text-align: center;
+}
+.edit-page-heading
+{
+    padding-right: 727px;
+}
+.back-home
+{
+    display: block; 
+    color: black;
+    margin-top: 40px;
+}
+

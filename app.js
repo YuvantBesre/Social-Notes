@@ -26,7 +26,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //SETTING UP MONGOOSE PACKAGE FOR DATABASE CONVERSATION
-mongoose.connect("mongodb://localhost:27017/NotesDB", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://yuvant_123:Kriti1990@cluster0.ligcs.mongodb.net/NotesDB", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -317,6 +317,10 @@ app.post("/edit/:postID" , function(request , response){
 
 // LISTENING ON THE GIVEN PORT
 
-app.listen(3000, function () {
-    console.log("Server is running on port 3000");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port, function () {
+    console.log("Server is running...");
 });

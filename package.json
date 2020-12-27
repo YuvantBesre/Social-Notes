@@ -8,6 +8,9 @@
   },
   "author": "Yuvant Besre",
   "license": "ISC",
+  "engines": {
+    "node": "14.15.0"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",

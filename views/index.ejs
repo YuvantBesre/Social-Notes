@@ -66,7 +66,9 @@
         <div class="notes-container">
         <h5> <%= note.title %> </h5>
         <p> <%= note.content %> </p>
-        <a href="/edit/<%=note._id %>" id="edit-btn" class="index-btn" role="button">Edit</a>
+        <% if(note.access === true){ %>
+          <a href="/edit/<%=note._id %>" id="edit-btn" class="index-btn" role="button">Edit</a>
+        <% } %>
         <form style="display: inline;" action="/delete/<%=note._id%>" method="POST">
         <button class="index-btn delete" type="submit">Delete</button>
       </form>

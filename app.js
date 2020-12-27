@@ -31,7 +31,8 @@ mongoose.set('useUnifiedTopology', true);
 
 const note = {
     title: "",
-    content: ""
+    content: "",
+    access : Boolean
 }
 const userSchema = new mongoose.Schema({
     name: String,
@@ -161,6 +162,8 @@ app.post("/notes", function (request, response) {
 
         note.title = request.body.title;
         note.content = request.body.content;
+        note.access = true;
+        
 
         user.findOneAndUpdate({ username: currentUser.username }, { $push: { notes: note } }, function (err, found) {
             if (err) {
@@ -210,7 +213,6 @@ app.post("/shared/:postID" , function(request , response){
     const URL = request.params.postID;
     const currentUser = request.user;
     const readOnly = request.body.read;
-    const readAndWrite = request.body.readwrite;
 
     if(request.isAuthenticated())
     {
@@ -221,18 +223,22 @@ app.post("/shared/:postID" , function(request , response){
             }
             else
             {
-                
-               user.findOneAndUpdate({ username : request.body.username} , {$push : { notes : foundPost.notes }} , function(err , result){
+                if(readOnly === "on")
+                {
+                    foundPost.notes[0].access = false;
+                }
+                user.findOneAndUpdate({ username : request.body.username} , {$push : { notes : foundPost.notes }} , function(err , result){
 
-                if(err)
-                {
-                    console.log(err);
-                }
-                else
-                {
-                    response.redirect("/home");
-                }
-               });
+                    if(err)
+                    {
+                        console.log(err);
+                    }
+                    else
+                    {
+                        response.redirect("/home");
+                    }
+                   });
+               
             }
         });
     }

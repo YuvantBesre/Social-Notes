@@ -6,9 +6,12 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const { response } = require('express');
 
 const app = Express();
 app.set('view engine', 'EJS');
+
+//MIDDLEWARES
 app.use(Express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(Express.static("public"));
@@ -22,17 +25,19 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+//SETTING UP MONGOOSE PACKAGE FOR DATABASE CONVERSATION
 mongoose.connect("mongodb://localhost:27017/NotesDB", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useUnifiedTopology', true);
 
+// CREATING DATABASE SCHEMA
 const note = {
     title: "",
     content: "",
-    access : Boolean
+    access : Boolean,
+    creator : ""
 }
 const userSchema = new mongoose.Schema({
     name: String,
@@ -43,6 +48,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
+// CREATING MODEL FOR THE ABOVE SCHEMA
 const user = mongoose.model("User", userSchema);
 
 passport.use(user.createStrategy());
@@ -116,6 +122,8 @@ app.get("/edit/:postID" , function(request , response){
     }
 
 });
+
+
 // ------------------------------------ POST REQUESTS ----------------------------------------
 
 app.post("/register", function (request, response) {
@@ -155,6 +163,7 @@ app.post("/login", function (request, response) {
     });
 });
 
+//ROUTE TO ADD NOTES
 app.post("/notes", function (request, response) {
 
     if (request.isAuthenticated()) {
@@ -163,6 +172,7 @@ app.post("/notes", function (request, response) {
         note.title = request.body.title;
         note.content = request.body.content;
         note.access = true;
+        note.creator = currentUser.name;
         
 
         user.findOneAndUpdate({ username: currentUser.username }, { $push: { notes: note } }, function (err, found) {
@@ -182,8 +192,13 @@ app.post("/notes", function (request, response) {
         });
 
     }
+    else
+    {
+        response.redirect("/");
+    }
 });
 
+// ROUTE TO DELETE ANY NOTE
 app.post("/delete/:postID" , function(request , response){
 
     const URL = request.params.postID;
@@ -208,6 +223,7 @@ app.post("/delete/:postID" , function(request , response){
         } 
 });
 
+// ROUTE FOR SHARING ANY NOTE TO OTHER USERS
 app.post("/shared/:postID" , function(request , response){
 
     const URL = request.params.postID;
@@ -244,9 +260,11 @@ app.post("/shared/:postID" , function(request , response){
     }
 });
 
+//ROUTE FOR RENDERING THE SEARCHED USER
 app.post("/search" , function(request , response){
       
     const userName = request.body.searched;
+    const currentUser = request.user.name;
 
     user.findOne({ username : userName } , function(err , foundUser){
 
@@ -256,11 +274,12 @@ app.post("/search" , function(request , response){
         }
         else
         {
-            response.render("searched" , { Name : foundUser.name , Notes : foundUser.notes });
+            response.render("searched" , { Name : currentUser , searchedUser : foundUser.name , Notes : foundUser.notes , value : userName});
         }
     });
 });
 
+//ROUTE FOR EDITING ANY NOTE
 app.post("/edit/:postID" , function(request , response){
 
     if(request.isAuthenticated())
@@ -296,7 +315,7 @@ app.post("/edit/:postID" , function(request , response){
 
 });
 
-
+// LISTENING ON THE GIVEN PORT
 
 app.listen(3000, function () {
     console.log("Server is running on port 3000");

@@ -24,8 +24,12 @@
   </head>
 
   <body>
+    <div class="welcome">
+      <h3> Welcome <%= Name %>!</h3>
+      <a class="index-btn logout" href="/logout" role="button">Logout</a>
+    </div>
 
-    <h2><%= Name %>'s Notes : </h2>
+    <h2><%= searchedUser %>'s Notes : </h2>
 
     <div class="search-field">
       <form action="/search" method="POST">
@@ -39,6 +43,13 @@
         <div class="notes-container">
         <h5> <%= note.title %> </h5>
         <p> <%= note.content %> </p>
+
+        <i> Creator : <%= note.creator %> </i>
+
+      <%  if(note.creator === Name && note.access === true){ %>
+          <button class="index-btn" name="button" value="<%=value%>" type="submit">Remove access to Edit</button>
+      <% } %>
+
       </div>
       <% }); %> 
 
